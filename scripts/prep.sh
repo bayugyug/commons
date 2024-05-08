@@ -54,6 +54,7 @@ _runPrep(){
 	    echo "unit testing"
 	    export GOCOVERDIR=/tmp
 	    go install github.com/onsi/ginkgo/v2/ginkgo
+	    go get github.com/onsi/ginkgo/v2/...
 	    go get github.com/onsi/gomega/...
 	    ginkgo -v --fail-fast \
 		    -r --randomize-suites \
