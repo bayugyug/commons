@@ -14,7 +14,6 @@ import (
 
 	"github.com/gabriel-vasile/mimetype"
 	"github.com/go-chi/chi"
-	"github.com/onsi/ginkgo/v2"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -23,7 +22,7 @@ func HTTPDummyReq(router *chi.Mux, method, path string, hdrs map[string]string,
 	body io.Reader) (*httptest.ResponseRecorder, []byte) {
 	req, err := http.NewRequest(method, path, body)
 	if err != nil {
-		ginkgo.Fail(err.Error())
+		log.Fatal(err.Error())
 	}
 	w := httptest.NewRecorder()
 	req.Header.Set("Content-Type", "application/json")
@@ -33,7 +32,7 @@ func HTTPDummyReq(router *chi.Mux, method, path string, hdrs map[string]string,
 	router.ServeHTTP(w, req)
 	respBody, err := io.ReadAll(w.Body)
 	if err != nil {
-		ginkgo.Fail(err.Error())
+		log.Fatal(err.Error())
 	}
 	return w, respBody
 }
@@ -45,7 +44,7 @@ func HTTPDummyRouting(handler http.Handler, method, path string, hdrs map[string
 	defer ts.Close()
 	req, err := http.NewRequest(method, ts.URL+""+path, body)
 	if err != nil {
-		ginkgo.Fail(err.Error())
+		log.Fatal(err.Error())
 	}
 	req.Header.Set("Content-Type", "application/json")
 	for k, v := range hdrs {
@@ -68,7 +67,7 @@ func HTTPDummyRouting(handler http.Handler, method, path string, hdrs map[string
 	}()
 	contents, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		ginkgo.Fail(err.Error())
+		log.Fatal(err.Error())
 	}
 	return strings.TrimSpace(string(contents)), resp.StatusCode
 }
