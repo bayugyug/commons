@@ -26,6 +26,9 @@ ci-cover:
 codecov:
 	@./scripts/codecov.sh
 
+coverage:
+	@./scripts/coverage.sh
+
 proto:
 	go generate ./...
 
