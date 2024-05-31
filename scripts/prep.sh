@@ -57,8 +57,10 @@ _runPrep(){
 	    go get github.com/onsi/ginkgo/v2/...
 	    go get github.com/onsi/gomega/...
 	    go run github.com/onsi/ginkgo/v2/ginkgo -v --fail-fast \
-		    -r --randomize-suites \
+		    -r --randomize-all --randomize-suites \
 		    --trace --race --show-node-events \
+            --fail-on-pending \
+            --keep-going \
 		    -covermode=atomic \
 		    -coverprofile=test.coverprofile \
 		    --output-dir=/tmp/
