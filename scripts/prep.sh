@@ -56,7 +56,7 @@ _runPrep(){
 	    go install github.com/onsi/ginkgo/v2/ginkgo
 	    go get github.com/onsi/ginkgo/v2/...
 	    go get github.com/onsi/gomega/...
-	    ginkgo -v --fail-fast \
+	    go run github.com/onsi/ginkgo/v2/ginkgo -v --fail-fast \
 		    -r --randomize-suites \
 		    --trace --race --show-node-events \
 		    -covermode=atomic \
