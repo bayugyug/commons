@@ -37,6 +37,11 @@ func Init(logtype string) {
 	// log.SetLevel(log.DebugLevel)
 }
 
+// SetLevel ...
+func SetLevel(level log.Level) {
+	log.SetLevel(level)
+}
+
 // GetLoggerCtx ...
 func GetLoggerCtx(ctx context.Context) *log.Entry {
 	return GetLogger(ctx).WithField(
@@ -54,7 +59,7 @@ func GetLoggerReqID(ctx context.Context) string {
 	if ctx == nil {
 		return ""
 	}
-	//based on go-chi middleware
+	// based on go-chi middleware
 	if old := middleware.GetReqID(ctx); old != "" {
 		return old
 	}
@@ -104,6 +109,6 @@ func GetLogger(ctx context.Context) *log.Entry {
 }
 
 func init() {
-	//sync the headers of the go-chi middleware for req-id
+	// sync the headers of the go-chi middleware for req-id
 	middleware.RequestIDHeader = XRequestUUID
 }
