@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/chi/v5/middleware"
 	log "github.com/sirupsen/logrus"
 )
 
