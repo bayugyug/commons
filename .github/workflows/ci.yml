@@ -62,6 +62,10 @@ jobs:
       - name: Display Go version
         run: go version
 
+      - name: Download dependencies
+        id: download-deps
+        run: go mod download
+
       - name: Install dependencies
         id: init-build
         run: go get .
