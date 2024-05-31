@@ -13,7 +13,7 @@ import (
 	"os"
 
 	"github.com/gabriel-vasile/mimetype"
-	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/v5"
 	log "github.com/sirupsen/logrus"
 )
 
