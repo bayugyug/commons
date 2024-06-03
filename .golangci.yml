@@ -12,8 +12,7 @@ linters-settings:
 
 exclude-rules:
   - SA1019: authverifier_test.go:128:21
-  - linters:
-      - typecheck
+
 issues:
   exclude:
     - "Error return value of .((os\\.)?std(out|err)\\..*|.*Close|.*Flush|os\\.Remove(All)?|.*printf?|os\\.(Un)?Setenv). is not checked"
@@ -24,3 +23,6 @@ issues:
       linters:
         - funlen
         - goconst
+    - path: '.*\.go'
+      linters:
+        - typecheck
