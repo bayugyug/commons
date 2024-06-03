@@ -34,7 +34,6 @@ jobs:
       WORK_ENVT: main
       TZ: Asia/Singapore
 
-    #runs-on: [ ubuntu-latest ]
     runs-on: ubuntu-22.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
@@ -51,7 +50,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.20'
+          go-version: '1.21'
 
       - name: Sanity Checks
         id: init-makefile
