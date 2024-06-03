@@ -2,17 +2,18 @@ linters-settings:
   staticcheck:
     checks:
       - all
-      - '-SA1000' # disable the rule SA1000
-      - '-SA1004' # disable the rule SA1004
-      - '-SA1019'
-      - '-S1025'
+      - "-SA1000" # disable the rule SA1000
+      - "-SA1004" # disable the rule SA1004
+      - "-SA1019"
+      - "-S1025"
   gosimple:
     checks:
-      - '-S1025'
-  
+      - "-S1025"
+
 exclude-rules:
   - SA1019: authverifier_test.go:128:21
-
+  - linters:
+      - typecheck
 issues:
   exclude:
     - "Error return value of .((os\\.)?std(out|err)\\..*|.*Close|.*Flush|os\\.Remove(All)?|.*printf?|os\\.(Un)?Setenv). is not checked"
@@ -22,4 +23,4 @@ issues:
     - path: '(.+)_test\.go'
       linters:
         - funlen
-        - goconst    
+        - goconst

@@ -2,7 +2,6 @@ package commons
 
 import (
 	"bytes"
-	"io"
 	ioutil "io"
 	"mime/multipart"
 	"net/http"
@@ -19,7 +18,7 @@ import (
 
 // HTTPDummyReq dummy recorder for http
 func HTTPDummyReq(router *chi.Mux, method, path string, hdrs map[string]string,
-	body io.Reader) (*httptest.ResponseRecorder, []byte) {
+	body ioutil.Reader) (*httptest.ResponseRecorder, []byte) {
 	req, err := http.NewRequest(method, path, body)
 	if err != nil {
 		log.Fatal(err.Error())
@@ -30,7 +29,7 @@ func HTTPDummyReq(router *chi.Mux, method, path string, hdrs map[string]string,
 		req.Header.Set(k, v)
 	}
 	router.ServeHTTP(w, req)
-	respBody, err := io.ReadAll(w.Body)
+	respBody, err := ioutil.ReadAll(w.Body)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -39,7 +38,7 @@ func HTTPDummyReq(router *chi.Mux, method, path string, hdrs map[string]string,
 
 // HTTPDummyRouting dummy routing for http
 func HTTPDummyRouting(handler http.Handler, method, path string, hdrs map[string]string,
-	body io.Reader) (string, int) {
+	body ioutil.Reader) (string, int) {
 	ts := httptest.NewServer(handler)
 	defer ts.Close()
 	req, err := http.NewRequest(method, ts.URL+""+path, body)
@@ -87,7 +86,7 @@ func DummyUpload(router *chi.Mux, uriPath, paramName, fileName, formType string)
 		return nil, nil, err
 	}
 
-	_, err = io.Copy(part, bytes.NewReader(contents))
+	_, err = ioutil.Copy(part, bytes.NewReader(contents))
 	if err != nil {
 		return nil, nil, err
 	}
